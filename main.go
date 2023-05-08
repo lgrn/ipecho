@@ -23,13 +23,13 @@ func main() {
 		})
 	})
 
-	r.GET("/text", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		ip := c.ClientIP() + "\n"
 		c.String(http.StatusOK, ip)
 	})
 
 	r.NoRoute(func(c *gin.Context) {
-		c.String(400, "HTTP Error 400: Bad Request.\nSupported endpoints are /json and /text\n")
+		c.String(400, "HTTP Error 400: Bad Request.\nSupported endpoints are / and /json\n")
 	})
 
 	// port is always 80, binary must run as root
