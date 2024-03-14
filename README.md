@@ -21,10 +21,28 @@ This will compile to the binary file `ipecho`.
 Port 80 requires root permissions, so you need to run the binary as root. For example:
 
 ```
-sudo ./ipecho
+# ./ipecho
 ```
 
 Logging is done to STDOUT.
+
+If you expect a reverse proxy to contact this application with headers
+that indicate the actual origin IP, such as `X-Real-IP` or
+`X-Forwarded-For`, you must indicate with a flag what the IP of this
+reverse proxy will be to mark it as trusted.
+
+For example, if ipecho runs on `10.0.0.20` and a reverse proxy on
+`10.0.0.1`, on the node that runs ipecho you would run:
+
+```
+# ./ipecho -proxy='10.0.0.1'
+```
+
+This flag can be specified multiple times to trust multiple proxies:
+
+```
+# ./ipecho -proxy='10.0.0.1' -proxy='10.0.0.2' (...)
+```
 
 ## Step 3: Examples
 
