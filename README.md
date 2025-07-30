@@ -1,3 +1,12 @@
+> [!NOTE]  
+> If you use HAProxy 2.2 or later, you probably don't need this. It can be done natively:
+> ```
+> acl host_ip hdr(host) -i ip.example.com
+> use_backend ipecho_haproxy if host_ip
+> backend ipecho_haproxy
+>   http-request return status 200 content-type text/plain lf-string "%[src]"
+> ```
+
 # ipecho
 
 A very basic webserver that listens on port 80 and returns the apparent origin IP.
